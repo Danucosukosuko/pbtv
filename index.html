@@ -47,7 +47,7 @@
             font-size: 1.2rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
             opacity: 0;
-            animation: fadeInText 0.5s 2s ease-in-out forwards; /* Se retrasa para después del fallback */
+            animation: fadeInText 0.5s 2s ease-in-out forwards;
             margin-top: 10px;
         }
         .tv-off {
@@ -93,17 +93,22 @@
                 fallback.classList.add('fade-in');
                 setTimeout(() => {
                     errorMessage.style.opacity = '1';
-                }, 10000); // Espera a que el gif esté visible antes de mostrar el mensaje
-            }, 500); // 0.5s para el efecto de apagado de TV
+                }, 10000);
+            }, 500);
         }
 
+        // Manejar errores
         iframe.onerror = switchToFallback;
 
-        setTimeout(() => {
-            if (!iframe.contentWindow || iframe.contentWindow.length === 0) {
-                switchToFallback();
-            }
-        }, 10000); // Reducción del tiempo a 1.5 segundos
+        // Tiempo de espera máximo para fallback
+        const fallbackTimeout = setTimeout(() => {
+            switchToFallback();
+        }, 10000);
+
+        // Cancelar el fallback si carga correctamente
+        iframe.onload = () => {
+            clearTimeout(fallbackTimeout);
+        };
     </script>
 </body>
 </html>
