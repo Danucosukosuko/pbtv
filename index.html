@@ -108,6 +108,7 @@
         // Cancelar el fallback si carga correctamente
         iframe.onload = () => {
             clearTimeout(fallbackTimeout);
+            errorMessage.style.opacity = '0';
         };
     </script>
 </body>
