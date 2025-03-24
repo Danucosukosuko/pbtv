@@ -93,7 +93,7 @@
                 fallback.classList.add('fade-in');
                 setTimeout(() => {
                     errorMessage.style.opacity = '1';
-                }, 5000); // Espera a que el gif esté visible antes de mostrar el mensaje
+                }, 10000); // Espera a que el gif esté visible antes de mostrar el mensaje
             }, 500); // 0.5s para el efecto de apagado de TV
         }
 
@@ -103,7 +103,7 @@
             if (!iframe.contentWindow || iframe.contentWindow.length === 0) {
                 switchToFallback();
             }
-        }, 5000); // Reducción del tiempo a 1.5 segundos
+        }, 10000); // Reducción del tiempo a 1.5 segundos
     </script>
 </body>
 </html>
